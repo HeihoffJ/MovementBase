@@ -1334,8 +1334,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  maxDist: 10
-  minDist: 2
 --- !u!114 &1330110322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1353,7 +1351,6 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -8.4}
   cyclic: 0
   waitTime: 0
-  enemySpeed: 5
   easeValue: 1
 --- !u!114 &1330110323
 MonoBehaviour:
@@ -1380,8 +1377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ea0215b8829974a973e8421807d845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeBtwShoots: 0.49
-  shootRange: 10
 --- !u!195 &1330110325
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1431,8 +1426,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRange: 10
   sphereRadius: 3
-  health: 100
+  maxDist: 10
+  minDist: 64
+  startTimeBtwShoots: 1.47
+  shootRange: 11.41
   retreatHealth: 20
+  health: 100
 --- !u!1 &1389760608
 GameObject:
   m_ObjectHideFlags: 0
