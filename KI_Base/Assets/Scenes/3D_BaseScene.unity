@@ -1368,8 +1368,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eyes: {fileID: 370158138}
-  lookRange: 80
-  sphereRadius: 3
 --- !u!114 &1330110324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1431,6 +1429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f6d6af722cef74a86eb2e09f777017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookRange: 10
+  sphereRadius: 3
   health: 100
   retreatHealth: 20
 --- !u!1 &1389760608

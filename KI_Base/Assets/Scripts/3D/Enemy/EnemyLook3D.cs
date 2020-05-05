@@ -5,20 +5,21 @@ using UnityEngine;
 public class EnemyLook3D : MonoBehaviour
 {
     public Transform eyes;
-    public int lookRange;
-    public float sphereRadius;
+
+    Enemy enemy;
+    
     void Start()
     {
-        
+        enemy = GetComponent<Enemy>();
     }
 
     public bool Look()
     {
         RaycastHit hit;
 
-        Debug.DrawRay(eyes.position, eyes.forward.normalized * lookRange, Color.green);
+        Debug.DrawRay(eyes.position, eyes.forward.normalized * enemy.lookRange, Color.green);
 
-        if (Physics.SphereCast (eyes.position, sphereRadius, eyes.forward,out hit, lookRange) && hit.transform.CompareTag ("Player"))
+        if (Physics.SphereCast (eyes.position, enemy.sphereRadius, eyes.forward,out hit, enemy.lookRange) && hit.transform.CompareTag ("Player"))
         {
            return true;
         }

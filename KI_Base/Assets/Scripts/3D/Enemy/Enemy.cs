@@ -4,37 +4,59 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float health;
+    //Angaben für EnemyLook
+    public int lookRange;
+    public float sphereRadius;
+    //------------------
+
+    //Enemy Seek
+    public int maxDist = 10;
+    public int minDist = 2;
+    //--------------------------
+
+    //Enemy Shoot
+    public float startTimeBtwShoots;
+    public float shootRange;
+    
+    //---------------------
+
+    //Enemy CheckHealth
     public float retreatHealth;
+    //---------------------------
+
+    public float health;
+    
     EnemyLook3D enemyLook3D;
     EnemyPatrouillie3D enemyPatrouillie3D;
     EnemyRetreat3D enemyRetreat3D;
     EnemySeek3D enemySeek3D;
     EnemyShoot3D enemyShoot3D;
-    
-    bool enemySeen=false;
-    bool readyToShoot=false;
-    void Start()
+    EnemyCheckHealth3D enemyCheckHealth3D;
+
+    bool enemySeen = false;
+    bool readyToShoot = false;
+    void Awake()
     {
         enemyLook3D = GetComponent<EnemyLook3D>();
         enemyPatrouillie3D = GetComponent<EnemyPatrouillie3D>();
         enemyRetreat3D = GetComponent<EnemyRetreat3D>();
         enemySeek3D = GetComponent<EnemySeek3D>();
         enemyShoot3D = GetComponent<EnemyShoot3D>();
+        enemyCheckHealth3D = GetComponent<EnemyCheckHealth3D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(enemyLook3D.Look())
-        enemySeen = true;
+        if (enemyLook3D.Look())
+            enemySeen = true;
         else
         {
-              enemySeen=false;
-              enemyRetreat3D.Retreat();
+            enemySeen = false;
+            enemyRetreat3D.Retreat();
         }
-      
-        if (CheckHealth())
+
+        if (enemyCheckHealth3D.CheckHealth())
             enemyRetreat3D.Retreat();
         else if (!enemySeen)
         {
@@ -44,18 +66,12 @@ public class Enemy : MonoBehaviour
         else if (enemySeen)
             enemySeek3D.SeekPlayer(ref readyToShoot);
 
-        if(readyToShoot)
-            enemyShoot3D.Shoot();      
+        if (readyToShoot)
+            enemyShoot3D.Shoot();
 
     }
 
-    bool CheckHealth()
-    {
-        if (health <= health * retreatHealth / 100)
-            return true;
-        else
-            return false;
-    }
+    
     void LooseHealth(float val)
     {
         health -= val;

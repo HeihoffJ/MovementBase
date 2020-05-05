@@ -10,12 +10,13 @@ public class EnemySeek3D : MonoBehaviour
 
     NavMeshAgent agent;
     public int speed = 4;
-    public int maxDist = 10;
-    public int minDist = 2;
+    
+    Enemy enemy;
     Vector3 lastPosition;
 
     void Start()
     {
+        enemy = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         eyes = GameObject.FindGameObjectWithTag("Eyes").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -39,7 +40,7 @@ public class EnemySeek3D : MonoBehaviour
         }
 
 
-        if (Vector3.Distance(transform.position, player.position) <= maxDist)
+        if (Vector3.Distance(transform.position, player.position) <= enemy.maxDist)
         {
             readyToShoot = true;
         }

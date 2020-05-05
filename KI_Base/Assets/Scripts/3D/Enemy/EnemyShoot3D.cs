@@ -5,14 +5,14 @@ using UnityEngine;
 public class EnemyShoot3D : MonoBehaviour
 {
     private float timeBtwShoots;
-    public float startTimeBtwShoots;
-
-    public float shootRange;
+    
+    Enemy enemy;
     //public GameObject projectile;
     // Start is called before the first frame update
     void Start()
     {
-        timeBtwShoots = startTimeBtwShoots;
+        enemy = GetComponent<Enemy>();
+        timeBtwShoots = enemy.startTimeBtwShoots;
 
     }
 
@@ -22,10 +22,10 @@ public class EnemyShoot3D : MonoBehaviour
         {
             //Instantiate(projectile,transform.position, Quaternion.identity);
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, shootRange) && hit.collider.CompareTag("Player"))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, enemy.shootRange) && hit.collider.CompareTag("Player"))
             {
                 Debug.Log("execute SHoot");
-                timeBtwShoots = startTimeBtwShoots;
+                timeBtwShoots = enemy.startTimeBtwShoots;
             }
         }
         else

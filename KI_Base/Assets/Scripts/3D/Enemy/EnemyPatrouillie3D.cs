@@ -12,7 +12,6 @@ public class EnemyPatrouillie3D : MonoBehaviour
     Vector3 lastPosition;
     public bool cyclic;
     public float waitTime;
-    public float enemySpeed;
     [Range(1, 3)]
     public float easeValue = 1;
     int fromWayPointIndex;
@@ -47,7 +46,7 @@ public class EnemyPatrouillie3D : MonoBehaviour
         fromWayPointIndex %= globalWayPoints.Length;
         int toWayPointIndex = (fromWayPointIndex + 1) % globalWayPoints.Length;
         float distance = Vector3.Distance(globalWayPoints[fromWayPointIndex], globalWayPoints[toWayPointIndex]);
-        percentBetweenWayPoints += Time.deltaTime * enemySpeed / distance;
+        percentBetweenWayPoints += Time.deltaTime * agent.speed / distance;
         percentBetweenWayPoints = Mathf.Clamp01(percentBetweenWayPoints);
         float easedPercent = Ease(percentBetweenWayPoints);
 
